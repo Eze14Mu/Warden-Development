@@ -1,47 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minecraft Hosting Service</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Minecraft Hosting Service</h1>
-    <nav>
-      <ul>
-        <li><a href="#plans">Plans</a></li>
-      </ul>
-    </nav>
-  </header>
+# Add "add-apt-repository" command
+apt -y install software-properties-common curl apt-transport-https ca-certificates gnupg
 
-  <section id="plans">
-    <h2>Choose Your Hosting Plan</h2>
-    <div class="plan" id="basic">
-      <h3>Basic Plan</h3>
-      <p>1 GB RAM, 1 CPU Core</p>
-      <p>$5/month</p>
-      <button onclick="selectPlan('Basic Plan')">Choose Plan</button>
-    </div>
-    <div class="plan" id="advanced">
-      <h3>Advanced Plan</h3>
-      <p>4 GB RAM, 2 CPU Cores</p>
-      <p>$15/month</p>
-      <button onclick="selectPlan('Advanced Plan')">Choose Plan</button>
-    </div>
-    <div class="plan" id="pro">
-      <h3>Pro Plan</h3>
-      <p>8 GB RAM, 4 CPU Cores</p>
-      <p>$30/month</p>
-      <button onclick="selectPlan('Pro Plan')">Choose Plan</button>
-    </div>
-  </section>
+# Add additional repositories for PHP (Ubuntu 20.04 and Ubuntu 22.04)
+LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 
-  <footer>
-    <p>&copy; 2024 Warden Developments</p>
-  </footer>
+# Add Redis official APT repository
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
 
-  <script src="script.js"></script>
-</body>
-</html>
+# MariaDB repo setup script (Ubuntu 20.04)
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+
+# Update repositories list
+apt update
+
+# Install Dependencies
+apt -y install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server
