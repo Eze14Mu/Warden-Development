@@ -1,0 +1,2 @@
+docker build -t hosting-panel .
+docker run -p 8080:8080 hosting-panel
