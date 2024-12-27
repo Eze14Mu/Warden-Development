@@ -1,3 +1,0 @@
-npx create-react-app hosting-panel
-cd hosting-panel
-npm install react-router-dom redux axios socket.io-client
