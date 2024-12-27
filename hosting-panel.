@@ -1,0 +1,14 @@
+hosting-panel/
+├── backend/       # Backend code
+│   ├── server.js
+│   ├── controllers/
+│   ├── models/
+│   └── routes/
+├── frontend/      # Frontend code
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── docker/        # Docker configurations
+├── config/        # Config files (e.g., database, API keys)
+├── README.md
+└── .gitignore
